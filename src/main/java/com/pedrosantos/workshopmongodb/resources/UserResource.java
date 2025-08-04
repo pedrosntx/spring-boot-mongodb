@@ -17,10 +17,16 @@ public class UserResource {
     @Autowired
     private UserService service;
 
-    @GetMapping
+    @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<UserDTO>> findAll(){
         List<User> list = service.findAll();
-        List<UserDTO> listDto = list.stream().map(x -> new UserDTO(x)).collect(Collectors.toList());
+        List<UserDTO> listDto = list.stream().map(UserDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
+    }
+
+    @RequestMapping(value="/{id}", method = RequestMethod.GET)
+    public ResponseEntity<UserDTO> findById(@PathVariable String id) {
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(new UserDTO(obj));
     }
 }

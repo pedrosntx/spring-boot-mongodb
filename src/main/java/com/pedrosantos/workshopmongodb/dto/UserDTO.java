@@ -3,6 +3,7 @@ package com.pedrosantos.workshopmongodb.dto;
 import com.pedrosantos.workshopmongodb.domain.User;
 
 import java.io.Serializable;
+import java.util.Optional;
 
 public class UserDTO implements Serializable {
 
@@ -12,7 +13,7 @@ public class UserDTO implements Serializable {
     private String name;
     private String email;
 
-    public UserDTO() {
+    public UserDTO(Optional<User> obj) {
     }
 
     public UserDTO(User obj){
